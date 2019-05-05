@@ -16,3 +16,4 @@ If the word is invalid, the user will be notified why(eg not a word, doesn't use
 If the word is valid a congragulatory message is printed("good job")
 The users entries are stored in an ArrayList
 to confirm the existence of the word in words.txt, a HashSet is created to store the entries of words.txt
+This takes place in the ReadFile class.
