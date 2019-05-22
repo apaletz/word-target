@@ -8,9 +8,9 @@ D|E|F
 G|H|I
 
 The grid is generated from a random 9-letter word pulled from words.txt found at: https://github.com/dwyl/english-words
-The goal is to make words from the letters in the grid. The words must be at least four characters 
+The goal is to make words from the letters in the grid. The words must be at least four characters long
 and contain the middle letter.
-The words are verified by performing various checks.
+The program uses various tests to confirm if the the word is valid.
 A message is then generated depending on the validity of the word:
 If the word is invalid, the user will be notified why(eg not a word, doesn't use the middle letter, uses letters not on grid)
 If the word is valid a congragulatory message is printed("good job")
