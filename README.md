@@ -1,11 +1,16 @@
 Word Target is a simple game that runs in Terminal.
-it produces a grid of letter in the following form:
+it produces a grid of letter in the following format:
 
 A|B|C
 -----
+_____
 D|E|F
 -----
+_____
 G|H|I
+-----
+_____
+
 
 The grid is generated from a random 9-letter word pulled from words.txt found at: https://github.com/dwyl/english-words
 The goal is to make words from the letters in the grid. The words must be at least four characters long
