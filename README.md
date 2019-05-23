@@ -3,13 +3,10 @@ it produces a grid of letter in the following format:
 
 A|B|C
 -----
-_____
 D|E|F
 -----
-_____
 G|H|I
 -----
-_____
 
 
 The grid is generated from a random 9-letter word pulled from words.txt found at: https://github.com/dwyl/english-words
