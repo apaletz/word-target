@@ -63,22 +63,11 @@ public class WordTarget {
         int lineCount = 0;
         WordTarget t = new WordTarget();
         Scanner scan = new Scanner(System.in);
-        //call welcome to give welcome message
-//        t.initiateWords();
-//        t.initiateNineLetterWords();
         initiateWords();
         initiateNineLetterWords();
         t.initiateTheWord();
         t.Welcome();
         t.instructions();
-//        System.out.println("type your answers then press [enter]");
-//        System.out.println("to see the nine letter word type 9");
-//        System.out.println("to see your answers so far type: 1");
-//        System.out.println("to see all possible answers type: 5");
-//        System.out.println("to start a new game, type \"new\"" +
-//                "your current game will be lost \n" +
-//                " for ever");
-//        System.out.println("type * to quit");
         System.out.println();
         t.scrambleTheWord();
         System.out.println();
@@ -97,19 +86,9 @@ public class WordTarget {
                         " or anything else to resume");
                 input = scan.next();
                 if(input.equals("yes")){
-//                    t.initiateWords();
-//                    t.initiateNineLetterWords();
                     t.initiateTheWord();
                     t.Welcome();
                     t.instructions();
-//                    System.out.println("type your answers then press enter");
-//                    System.out.println("to see the nine letter word enter: 9");
-//                    System.out.println("to see your answers so far enter: 1");
-//                    System.out.println("to see all possible answers, enter: 5");
-//                    System.out.println("to start a new game, enter \"new\", " +
-//                            "your current game will be lost \n" +
-//                            " for ever");
-//                    System.out.println("Enter * to quit");
                     t.scrambleTheWord();
                     System.out.println();
                     t.gridify(t.theScrambledWord);
