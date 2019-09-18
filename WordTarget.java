@@ -4,10 +4,9 @@ import java.io.*;
 import java.util.*;
 
 public class WordTarget {
-    //
     public static boolean newGame = false;
     //declare variables word set and word list and the word
-    public Scanner x;
+    public Scanner scanner;
     public static Set<String> words;
     public static ArrayList<String> nineLetterWords;
     public String theWord;
@@ -27,10 +26,21 @@ public class WordTarget {
         System.out.println();
         System.out.println("Welcome to Word Target!");
         System.out.println();
-        System.out.println("Come up with as many words as possible containing FOUR letters or more.");
+    }
+    public void instructions(){
+        System.out.println("Come up with as many words as possible, using  " +
+                "the letter in the grid, containing FOUR letters or more.");
         System.out.println("There is at least one nine letter word");
         System.out.println("Words MUST contain the MIDDLE letter.");
         System.out.println();
+        System.out.println("Type your answers then press [enter]");
+        System.out.println("To see the nine letter word type 9");
+        System.out.println("To see your answers so far type: 1");
+        System.out.println("To see all possible answers type: 5");
+        System.out.println("To start a new game, type \"new\"" +
+                "your current game will be lost \n" +
+                " for ever");
+        System.out.println("Enter * to quit");
     }
     //create "words"-a list of all english words in the main method
     public static void initiateWords(){
@@ -54,18 +64,21 @@ public class WordTarget {
         WordTarget t = new WordTarget();
         Scanner scan = new Scanner(System.in);
         //call welcome to give welcome message
-        t.initiateWords();
-        t.initiateNineLetterWords();
+//        t.initiateWords();
+//        t.initiateNineLetterWords();
+        initiateWords();
+        initiateNineLetterWords();
         t.initiateTheWord();
         t.Welcome();
-        System.out.println("type your answers then press [enter]");
-        System.out.println("to see the nine letter word type 9");
-        System.out.println("to see your answers so far type: 1");
-        System.out.println("to see all possible answers type: 5");
-        System.out.println("to start a new game, type \"new\"" +
-                "your current game will be lost \n" +
-                " for ever");
-        System.out.println("type * to quit");
+        t.instructions();
+//        System.out.println("type your answers then press [enter]");
+//        System.out.println("to see the nine letter word type 9");
+//        System.out.println("to see your answers so far type: 1");
+//        System.out.println("to see all possible answers type: 5");
+//        System.out.println("to start a new game, type \"new\"" +
+//                "your current game will be lost \n" +
+//                " for ever");
+//        System.out.println("type * to quit");
         System.out.println();
         t.scrambleTheWord();
         System.out.println();
@@ -80,21 +93,23 @@ public class WordTarget {
             if(input.equals("new")){
                 newGame = true;
                 System.out.println("Are you sure you want to start a new game?");
-                System.out.println("type \"yes\" to confirm new game, or anything else to resume");
+                System.out.println("type \"yes\" to confirm new game," +
+                        " or anything else to resume");
                 input = scan.next();
                 if(input.equals("yes")){
-                    t.initiateWords();
-                    t.initiateNineLetterWords();
+//                    t.initiateWords();
+//                    t.initiateNineLetterWords();
                     t.initiateTheWord();
                     t.Welcome();
-                    System.out.println("type your answers the press enter");
-                    System.out.println("to see the nine letter word enter: 9");
-                    System.out.println("to see your answers so far enter: 1");
-                    System.out.println("to see all possible answers, enter: 5");
-                    System.out.println("to start a new game, enter \"new\", " +
-                            "your current game will be lost \n" +
-                            " for ever");
-                    System.out.println("Enter * to quit");
+                    t.instructions();
+//                    System.out.println("type your answers then press enter");
+//                    System.out.println("to see the nine letter word enter: 9");
+//                    System.out.println("to see your answers so far enter: 1");
+//                    System.out.println("to see all possible answers, enter: 5");
+//                    System.out.println("to start a new game, enter \"new\", " +
+//                            "your current game will be lost \n" +
+//                            " for ever");
+//                    System.out.println("Enter * to quit");
                     t.scrambleTheWord();
                     System.out.println();
                     t.gridify(t.theScrambledWord);
@@ -105,7 +120,8 @@ public class WordTarget {
             if(input.equals("5")){
                 System.out.println((answers));
                 System.out.println();
-                System.out.println("There are " + answers.size() + " possible answers");
+                System.out.println("There are " + answers.size() +
+                        " possible answers");
                 t.gridify(t.theScrambledWord);
                 System.out.println();
             }
@@ -122,7 +138,8 @@ public class WordTarget {
                 lineCount+=2;
             }
             else if(input.equals(t.theWord)){
-                System.out.println("WOOHOO! you are AMAZING, YOU FOUND THE NINE LETTER WORD");
+                System.out.println("WOOHOO! you are AMAZING," +
+                        " YOU FOUND THE NINE LETTER WORD");
             }
             else if(t.check(input)){
                     //random int between 0 and 4
@@ -145,7 +162,8 @@ public class WordTarget {
                     t.updateAnswers(input);
                     lineCount +=3;
             }
-            //the following is an else statement to add to linecount when an invalid word is entered
+            //the following is an else statement to add to
+            // line count when an invalid word is entered
             else{
                 lineCount+=3;
             }
@@ -163,13 +181,13 @@ public class WordTarget {
     public Set<String> createSet(){
         Set<String> words = new HashSet<>();
         try{
-            x = new Scanner(new File("words.txt"));
+            scanner = new Scanner(new File("words.txt"));
         }
         catch(Exception e){
             System.out.println("oops, couldn't find my dictionary!");
         }
-        while(x.hasNext()){
-            String a = x.next();
+        while(scanner.hasNext()){
+            String a = scanner.next();
             words.add(a);
         }
         return words;
@@ -179,13 +197,13 @@ public class WordTarget {
     public ArrayList<String> createList(){
         ArrayList<String> nineLetterWords = new ArrayList<>();
         try{
-            x = new Scanner(new File("words.txt"));
+            scanner = new Scanner(new File("words.txt"));
         }
         catch(Exception e){
             System.out.println("oops, couldn't find my dictionary!");
         }
-        while(x.hasNext()){
-            String a = x.next();
+        while(scanner.hasNext()){
+            String a = scanner.next();
             if(a.length() == 9){
                 nineLetterWords.add(a);
             }
@@ -221,16 +239,20 @@ public class WordTarget {
     public void gridify(String word){
         String wordCaps = word.toUpperCase();
         //we know word will be nine letters
-        System.out.println(wordCaps.charAt(0) + " | " + wordCaps.charAt(1) + " | " + wordCaps.charAt(2));
+        System.out.println(wordCaps.charAt(0) + " | " + wordCaps.charAt(1)
+                + " | " + wordCaps.charAt(2));
         System.out.println("----------");
-        System.out.println(wordCaps.charAt(3) + " | " + wordCaps.charAt(4) + " | " + wordCaps.charAt(5));
+        System.out.println(wordCaps.charAt(3) + " | "
+                + wordCaps.charAt(4) + " | " + wordCaps.charAt(5));
         System.out.println("----------");
-        System.out.println(wordCaps.charAt(6) + " | " + wordCaps.charAt(7) + " | " + wordCaps.charAt(8));
+        System.out.println(wordCaps.charAt(6) + " | "
+                + wordCaps.charAt(7) + " | " + wordCaps.charAt(8));
     }
     public boolean check(String word) {
         //create a boolean to indicate if the word is valid or not
         //the check method is currently incomplete
-        //it gives a false negative(shows invalid answers as valid, when a given word repeats a letter that only exists
+        //it gives a false negative(shows invalid answers as valid,
+      // when a given word repeats a letter that only exists
         // once on the grid
         //the following will attempt to solve this
         //create a Character arrayList to store letters of the Word
@@ -258,8 +280,10 @@ public class WordTarget {
         //find out if any letters occur more often in the answer than in the grid
 //        while(!tooMany){
             for(int i = 0; i <answerChars.size(); i++){
-                answerOccurances = Collections.frequency(answerChars, answerChars.get(i));
-                wordoccurances = Collections.frequency(wordChars, answerChars.get(i));
+                answerOccurances = Collections.frequency(answerChars,
+                        answerChars.get(i));
+                wordoccurances = Collections.frequency(wordChars,
+                        answerChars.get(i));
                 if(answerOccurances > wordoccurances){
                     tooMany = true;
                 }
